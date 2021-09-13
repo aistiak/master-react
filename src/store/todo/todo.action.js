@@ -6,3 +6,11 @@ export const setTodoState = (data) => {
     payload: data,
   };
 };
+
+export const setTodoWithThunk = (data) => async (dispatch,getState) => {
+  // some async stuff 
+  dispatch({
+    type : todoActionTypes.SET_TODO_STATE ,
+    payload : data 
+  })
+}

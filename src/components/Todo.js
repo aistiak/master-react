@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setTodoState } from "../store/todo/todo.action";
+import { setTodoWithThunk } from "../store/todo/todo.action";
 const Todo = () => {
   const todos = useSelector((state) => state.todo.todos);
   const [todo, setTodo] = useState();
@@ -16,7 +16,7 @@ const Todo = () => {
         },
       ];
       dispatch(
-        setTodoState({
+        setTodoWithThunk({
           todos: newTodos,
         })
       );
@@ -29,8 +29,8 @@ const Todo = () => {
 
       <input value={todo} onChange={(e) => setTodo(e.target.value)} />
       <button onClick={onAddTodo}>add</button>
-      {todos?.map((todo) => (
-        <div key={todo.id}>
+      {todos?.map((todo,key) => (
+        <div key={key}>
           {" "}
           {todo.id} {". "} {todo.name}
         </div>
