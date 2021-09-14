@@ -1,13 +1,13 @@
 import "./App.css";
-import Todo from "./components/Todo";
 import { Provider } from "react-redux";
 import store from "./store";
+import SagaExample from "./pages/saga-example";
 
 function App() {
   return (
     <div className="App">
       <Provider store={store}>
-        <Todo />
+        <SagaExample/>
       </Provider>
     </div>
   );
