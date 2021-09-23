@@ -1,15 +1,20 @@
 import { useContext } from "react";
-import { ThemeContext } from "../App";
+import { useCurrentTheme, useSetCurrentTheme } from "../ThemeProvider";
 
 const SomeComponent = () => {
-  const theme = useContext(ThemeContext);
-
+  const theme = useCurrentTheme();
+  const setTheme = useSetCurrentTheme();
   const myStyle = {
     height: 300,
     width: 300,
-    backgroundColor: theme ? "grey" : 'lime',
+    backgroundColor: theme ? "grey" : "lime",
   };
-  return <div style={myStyle}>this is some component  </div>;
+  return (
+    <div style={myStyle}>
+      <button onClick={setTheme}> toggle </button>
+      <div>this is some component</div>
+    </div>
+  );
 };
 
 export default SomeComponent;
