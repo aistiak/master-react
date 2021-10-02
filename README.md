@@ -1,6 +1,6 @@
 ## Typescript  
 - ts basics 
-- declare types with typescript (union,intersection,utils)
+- util types 
 - tsconfig.josn basics 
 - compiling ts with webpack
 - how to use ts with React (installation) 
@@ -10,7 +10,7 @@
 ## ts-basic 
 - typescript provides all the features of javascript with additioal layers on top of it ( type checking , attribute hinting / suggestion /inferred types , hinting errors before they occure)
 - simple example of declaring a variable . In JS `const name = "arif"` , in TS `const name : string = "arif"`
-- primitive types are `string` `number` `boolean` . some advance types are ...// todo 
+- primitive types are `string` `number` `boolean` . some advance types are Union (for custom types), Enume (for primitive types)
 - `any` is used to assign multiple types to a variable 
 - to declare array is TS we can use `type[]` or `Array<type>`
 Example :
@@ -27,3 +27,82 @@ interface User {
 }
 const user : User = { id : 1 , name : "arif" }
 ```
+```
+type User {
+    
+}
+```
+
+
+- typescript allows us to build new types based on existing types with the help of unions 
+```
+const ID = string | number 
+// header ID can be of type string or number
+// the type of ID can retrived with typeof operator 
+typeof ID 
+```
+- type alias is used to provide name for a custom type 
+```
+type Point = {
+    x : number ;
+    y : number ;
+}
+type ID = number | string ;
+```
+
+- interface and type alias are very similar , the key difference between them are
+    - interface are extendable we can add new properties to them but not to type alias 
+        ```
+        interface Animal {
+            species : string ;
+        }
+
+        interface Cat extends Animal {
+            color : string ;
+        }
+
+        const  cat : Cat = getCat() ;
+
+        cat.species 
+
+        cat.color 
+
+        ```
+         for type alias
+
+        ``` 
+        type Animal = {
+            species : string ; 
+        }
+
+        type Cat = Animal & {
+            color : string ;
+        }
+
+        ```
+
+    - adding new types 
+        ```
+        interface Animal {
+            species : string ;
+        }
+
+        interface Animal {
+            location : string ;
+        }
+
+        ```
+
+        but in type alias 
+
+        ```
+        type Point {
+            x : number ;
+            y : number ;
+        }
+
+        type Point {
+            x : number ; // this is not possible and will cause error
+        }
+        ```
+- `Function` is a type in typescript 
