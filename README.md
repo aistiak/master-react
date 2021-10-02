@@ -116,7 +116,8 @@ type ID = number | string ;
 
 
 # creating types form types 
-- `Generic` types // todo ...
+- in `Generic` type the type is dynamically taken as a parameter 
+// todo ...
 # util types 
 there are many uitls but we will discuess only `Partial` ,`Readonly`, `Pick`, and `Omit` 
 lets say we have a type of Todo 
