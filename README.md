@@ -41,6 +41,12 @@ const ID = string | number
 // the type of ID can retrived with typeof operator 
 typeof ID 
 ```
+- enumes are declared as 
+```
+type name = 'arif' | 'sarif' | 'sihab' | 'amit' | 'abid' ;
+const personName : name = 'arif' // ✅
+const manName : name = 'tipu' // ❌
+```
 - type alias is used to provide name for a custom type 
 ```
 type Point = {
