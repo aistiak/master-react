@@ -1,5 +1,6 @@
 ## Typescript  
 - ts basics 
+- creating types form types 
 - util types 
 - tsconfig.josn basics 
 - compiling ts with webpack
@@ -112,3 +113,44 @@ type ID = number | string ;
         }
         ```
 - `Function` is a type in typescript 
+
+
+# creating types form types 
+- `Generic` types // todo ...
+# util types 
+there are many uitls but we will discuess only `Partial` ,`Readonly`, `Pick`, and `Omit` 
+lets say we have a type of Todo 
+```
+type Todo = {
+    title : string ;
+    completed : boolean ;
+    createdAt : string ;
+}
+```
+`Partial (Partial<Type>)` constructs a type with all properties of Type as optional  
+```
+
+type UpdatedTodo = Partial<Todo> ;
+
+```
+`Readonly (Readonly<Type>)` constructs a type with all properties of Type as readonly 
+
+```
+
+type ReadOnlyTodo = Readonly<Todo> ;
+
+```
+`Pick (Readonly<Type,Keys>)` Constructs a type by picking the set of properties 
+
+```
+
+type ModTodo = Pick<Todo, 'title' | 'completed' > ;
+
+```
+`Omit (Omit<Type,Keys>)` Constructs a type by removing the set of properties 
+```
+
+type ModTodo = Omit<Todo, 'createdAt' | 'title' > ;
+
+```
+
