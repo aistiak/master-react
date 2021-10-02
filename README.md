@@ -108,7 +108,7 @@ type ID = number | string ;
         }
 
         type Point {
-            x : number ; // this is not possible and will cause error
+            x : number ; // ❌ this is not possible and will cause error
         }
         ```
 - `Function` is a type in typescript 
