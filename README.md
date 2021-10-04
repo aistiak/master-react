@@ -155,3 +155,112 @@ type ModTodo = Omit<Todo, 'createdAt' | 'title' > ;
 
 ```
 
+# tsconfig.json file 
+The presence of a tsconfig.json file in a directory indicates that the directory is the root of a TypeScript project. The tsconfig.json file specifies 
+- the root files and 
+- the compiler options required to compile the project.
+- By invoking tsc with no input files, in which case the compiler searches for the tsconfig.json file starting in the current directory and continuing up the parent directory chain.
+- By invoking tsc with no input files and a --project (or just -p) command line option that specifies the path of a directory containing a tsconfig.json file, or a path to a valid .json file containing the configurations.
+### Example tsconfig.json files
+Example tsconfig.json files:
+- Using the files property
+    ```
+    {
+        "compilerOptions": {
+            "module": "commonjs",
+            "noImplicitAny": true,
+            "removeComments": true,
+            "preserveConstEnums": true,
+            "sourceMap": true
+        },
+        "files": [
+            "core.ts",
+            "sys.ts",
+            "types.ts",
+            "scanner.ts",
+            "parser.ts",
+            "utilities.ts",
+            "binder.ts",
+            "checker.ts",
+            "emitter.ts",
+            "program.ts",
+            "commandLineParser.ts",
+            "tsc.ts",
+            "diagnosticInformationMap.generated.ts"
+        ]
+    }
+    ```
+- Using the include and exclude properties
+    ```
+    {
+        "compilerOptions": {
+            "module": "system",
+            "noImplicitAny": true,
+            "removeComments": true,
+            "preserveConstEnums": true,
+            "outFile": "../../built/local/tsc.js",
+            "sourceMap": true
+        },
+        "include": ["src/**/*"],
+        "exclude": ["node_modules", "**/*.spec.ts"]
+    }
+    ```
+
+# compile ts with webpack 
+webpack is a build-tool / bundler 
+- a project using webpack has a webpack.config.js file 
+- the file has 5 main sections 
+    - entry 
+    - output 
+    - loaders 
+    - plugins 
+    - mode 
+
+- mode has the value 'production' | 'development' | 'none'
+- entry specifies the entry point , hear webpack starts bundling , this continas value of type string , object or array 
+- output attribute tells webpack how and where you want to output your bundeled files 
+- plugins specify some task you want to perform after the bundeling finishes 
+- loaders specify some task you want to perform before the bundeling starts , and is expressed with `rules` attribute under `module` object  in the config file 
+- webpack config has an attribute called `devServer` which provides a development server and can also be used for hotreload with `watchFiles`
+    ```
+    module.exports = {
+        module: {
+            rules: [
+            { test: /\.css$/, use: 'css-loader' },
+            { test: /\.ts$/, use: 'ts-loader' },
+            ],
+        },
+    };
+
+    ```
+### bundel ts with webpack 
+```
+const path = require('path');
+
+module.exports = {
+  entry: './src/index.ts',
+  module: {
+    rules: [
+      {
+        test: /\.ts$/,
+        include: [path.resolve(__dirname, 'src')],
+        use: 'ts-loader',
+      }
+    ]
+  },
+  resolve: {
+    extensions: ['.ts', '.js'],
+  },
+  devtool: 'eval-source-map',
+  output: {
+    publicPath: 'public',
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'public'),
+  },
+};
+```
+
+## using `ts` in `React` 
+### start a new project with `typescript` 
+we can just use `npx create-react-app app-name --template typescript` 
+### add `typescript` to existing react project 
